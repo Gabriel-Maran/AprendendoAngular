@@ -1,0 +1,16 @@
+<div>
+    @switch (addLinguagem.toLowerCase()) {
+        @case("html"){
+            <p>Linguagem de marcação</p>
+        }
+        @case("css"){
+            <p>Linguagem de estilo</p>
+        }
+        @case("js"){
+            <p>Linguagem de programação</p>
+        }
+        @default{
+            <p>Linguagem não encontrada</p>
+        }
+    }
+</div>

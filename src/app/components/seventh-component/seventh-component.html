@@ -1,0 +1,22 @@
+<section>
+    <h3>Notas dos alunos</h3>
+    <ul>
+        //Recomendado quando simples
+        @for (aluno of alunos; track $index) {
+            <li [style]="aluno.nota >= 6 ? {  color: 'green'} : { color: 'red' }">
+                {{aluno.nome}} - {{aluno.nota}} - {{aluno.nota >= 6 ? "APROVADO" : "REPROVADO"}}
+            </li>
+        }
+    </ul>
+</section>
+
+<hr>
+
+<ul>
+    //Recomendado quando complexa
+    @for (aluno of alunos; track $index) {
+       <li [ngClass]="aluno.nota >= 6 ? 'fontVerde' : 'fontVermelho'">
+            {{aluno.nome}}
+       </li>
+    }
+</ul>

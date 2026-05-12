@@ -1,0 +1,22 @@
+#cntSwitchImg{
+    display: flex;
+    flex-direction: column;
+    min-width: 20rem;
+    gap: 1em;
+    align-items: center;
+}
+
+button{
+    border-radius: 10px;
+    border-width: 01;
+    width: 15rem;
+    padding: 15px;
+}
+
+#ctn{
+    width: 100%;
+}
+
+img{
+    height: 15rem;
+}

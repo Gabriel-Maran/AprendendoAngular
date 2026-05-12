@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './tenth-component.html',
   styleUrl: './tenth-component.css',
 })
-export class TenthComponent {}
+export class TenthComponent {
+  
+}

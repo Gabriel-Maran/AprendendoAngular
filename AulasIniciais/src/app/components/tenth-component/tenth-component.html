@@ -1,0 +1,97 @@
+@let nome = formulario.get('nome');
+@let idade = formulario.get('idade');
+@let cidade = formulario.get('cidade');
+
+<form [formGroup]="formulario" action="">
+  <!--NOME------------>
+  @if (nome && nome.errors && nome.touched) {
+    @if (nome.hasError('required')) {
+      <p class="requiredCampo">O campo nome é obrigatório</p>
+    } @else if (nome.hasError('minlength')) {
+      <p class="requiredCampo">O nome deve ter mais caracteres.</p>
+    }
+  }
+  <input name="nome" formControlName="nome" type="text" placeholder="Nome" class="form-input" />
+
+  <!--IDADE------------>
+  @if (idade && idade.errors && idade.touched) {
+    @if (idade.hasError('required')) {
+      <p class="requiredCampo">O campo idade é obrigatório</p>
+    } @else if (idade.hasError('min')) {
+      <p class="requiredCampo">O campo idade não aceita menor que 0</p>
+    } @else if (idade.hasError('max')) {
+      <p class="requiredCampo">O campo idade não aceita maior que 120</p>
+    }
+  }
+  <input
+    name="idade"
+    formControlName="idade"
+    type="number"
+    placeholder="Idade"
+    class="form-input"
+  />
+
+  <!--CIDADE------------>
+  @if (cidade && cidade.errors && cidade.touched) {
+    @if (cidade.hasError('required')) {
+      <p class="requiredCampo">O campo cidade é obrigatório</p>
+    } @else if (cidade.hasError('minlength')) {
+      <p class="requiredCampo">class="requiredCampo">A cidade deve ter mais caracteres.</p>
+    }
+  }
+  <input
+    name="cidade"
+    formControlName="cidade"
+    type="text"
+    placeholder="Cidade"
+    class="form-input"
+  />
+
+  <section id="ctnBtns">
+    @if (isCadastrando) {
+      <input
+        (click)="cadastro()"
+        type="button"
+        value="Cadastrar"
+        id="form-enviar"
+        [disabled]="formulario.invalid"
+      />
+    } @else {
+      <input
+        type="button"
+        (click)="alteracao()"
+        value="Editar"
+        id="form-editar"
+        [disabled]="formulario.invalid"
+      />
+      <input (click)="remover()" type="button" value="Remover" id="form-remover" />
+      <input (click)="cancelar()" type="button" value="Cancelar" id="form-cancelar" />
+    }
+  </section>
+</form>
+<div id="table-responsive">
+  <table>
+    <thead>
+      <tr id="tableHead">
+        <th id="colId">#</th>
+        <th class="columnDef">Nome</th>
+        <th class="columnDef">Idade</th>
+        <th class="columnDef">Cidade</th>
+        <th class="columnDef">Selecionar</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (pessoa of pessoas; track $index) {
+        <tr>
+          <td id="colId">{{ $index + 1 }}</td>
+          <td class="columnDef">{{ pessoa.nome }}</td>
+          <td class="columnDef">{{ pessoa.idade }}</td>
+          <td class="columnDef">{{ pessoa.cidade }}</td>
+          <td class="columnDef btnCenter">
+            <input type="button" value="Selecionar" (click)="selecionar($index)" />
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

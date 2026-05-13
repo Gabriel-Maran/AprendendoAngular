@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+form {
+  max-width: 450px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-input {
+  padding: 12px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid rgb(143, 143, 143);
+  outline: none;
+}
+
+#ctnBtns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 0.6rem;
+}
+
+input[type='button'] {
+  width: 6rem;
+  padding: 5;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgb(143, 143, 143);
+  cursor: pointer;
+}
+
+button {
+  width: 6rem;
+  padding: 5;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgb(143, 143, 143);
+  cursor: pointer;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  margin-top: 1.6rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  vertical-align: top;
+  border-collapse: collapse;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 1rem;
+  color: #212529;
+  background-color: #ffffff;
+  border: 2px solid #dee2e6;
+  border-spacing: 0;
+  border-radius: 10px;
+  table-layout: fixed;
+}
+
+th,
+td {
+  overflow-wrap: anywhere;
+  padding: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+thead {
+  vertical-align: bottom;
+  border-color: inherit;
+}
+
+thead tr {
+  border-bottom: 2px solid #dee2e6;
+}
+
+.btnCenter {
+  display: flex;
+  justify-content: center;
+}
+
+#colId {
+  width: 8%;
+  white-space: nowrap;
+}
+
+th:not(#colId),
+td:not(#colId) {
+  width: auto;
+}
+
+.columnDef {
+  border-left: 2px solid #dee2e6;
+}
+
+.requiredCampo {
+  background-color: #fdefcd;
+  color: #7d5628;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 6px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+}
+
+/*
+#form-enviar {
+    background-color: #10b981;
+    border: 1px solid #059669;
+    color: white;
+}
+
+#form-editar {
+    background-color: #3b82f6;
+    border: 1px solid #2563eb;
+    color: white;
+}
+
+#form-cancelar {
+    background-color: #64748b;
+    border: 1px solid #475569;
+    color: white;
+}
+
+#form-remover {
+    background-color: #ef4444;
+    border: 1px solid #dc2626;
+    color: white;
+}
+
+*/

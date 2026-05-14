@@ -1,0 +1,112 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  width: 100%;
+  border-radius: 12px;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 15px;
+}
+.border-bottom {
+  border-bottom: 1px solid #ddd;
+}
+
+.columnDef {
+  margin: 0;
+  flex: 1;
+}
+
+.task-title {
+  font-weight: bold;
+}
+
+.task-date {
+  color: #5a5a5a;
+}
+
+.center {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.imgClick {
+  width: 60px;
+  height: 24px;
+  background-color: #0284c7;
+  -webkit-mask: url('/visualizar.svg') no-repeat center / contain;
+  mask: url('/visualizar.svg') no-repeat center / contain;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-left: auto;
+}
+
+.imgClick:hover {
+  background-color: #025b8b;
+}
+
+.btn-danger {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
+.check {
+  margin-right: 1rem;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: #ffffff;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+
+.check:hover {
+  border-color: #2ecc71;
+}
+
+.check:checked {
+  border-color: #2ecc71;
+}
+
+.check:checked::before {
+  content: '';
+  width: 0.3rem;
+  height: 0.6rem;
+  border: solid #2ecc71;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #a0a0a0;
+}
+
+.doneImg {
+  text-decoration: line-through;
+  background-color: #a0a0a0;
+}

@@ -1,1 +1,19 @@
-<p>lista works!</p>
+<section id="container">
+  @for (task of tasks; track task.id) {
+    <section class="task-row" [class.border-bottom]="!$last" [class.done]="task.isDone">
+      <input
+        class="check"
+        type="checkbox"
+        name="isDone"
+        id=""
+        [checked]="task.isDone"
+        (change)="switchValue(task)"
+      />
+      <p class="columnDef task-title">{{ task.title }}</p>
+      <p class="columnDef task-date center">{{ formatarData(task.date.toString()) }}</p>
+      <button class="columnDef btn">
+        <img class="imgClick" [class.doneImg]="task.isDone" src="visualizar.png" alt="" />
+      </button>
+    </section>
+  }
+</section>

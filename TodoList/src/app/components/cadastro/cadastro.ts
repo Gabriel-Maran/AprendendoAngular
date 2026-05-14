@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { dateNowOrGreater } from '../../utils/validation/dateNowOrGreater';
 import { CommonModule } from '@angular/common';
+import { Task } from '../../models/Task';
 
 @Component({
   selector: 'app-cadastro',
@@ -12,9 +13,31 @@ import { CommonModule } from '@angular/common';
 export class Cadastro {
   forms = new FormGroup({
     id: new FormControl(0),
-    title: new FormControl('', [Validators.required, Validators.min(3), Validators.max(15)]),
+    title: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(25),
+    ]),
     date: new FormControl(new Date(), [Validators.required, dateNowOrGreater()]),
-    description: new FormControl('', [Validators.required, Validators.min(3), Validators.max(15)]),
+    description: new FormControl(''),
   });
-  salvarForms() {}
+  onTaskCreated = output<Task>();
+
+  salvarForms() {
+    this.forms.markAllAsTouched();
+    if (this.forms.invalid) {
+      return;
+    }
+    const formValues = this.forms.getRawValue();
+
+    const novaTask: Task = {
+      id: crypto.randomUUID(),
+      title: formValues.title!,
+      description: formValues.description ?? '',
+      date: formValues.date!,
+      isDone: false,
+    };
+    this.onTaskCreated.emit(novaTask);
+    this.forms.reset();
+  }
 }

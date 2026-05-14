@@ -1,0 +1,27 @@
+@let title = forms.value.title;
+@let date = forms.value.date;
+@let description = forms.value.description;
+
+<form [formGroup]="forms" (ngSubmit)="salvarForms()">
+  <div class="formDivision">
+    <div class="itensList">
+      <label for="title">Título</label>
+      <input formControlName="title" class="input" type="text" id="title" />
+    </div>
+    <div class="itensList">
+      <label for="date">Data</label>
+      <input formControlName="date" class="input" id="calendario" type="date" />
+    </div>
+    <div>
+      <button type="submit" id="addBtn">
+        <img id="imgAdd" src="add.png" alt="Adicionar item" />
+      </button>
+    </div>
+  </div>
+  <div class="formDivision">
+    <div class="itensList">
+      <label for="description">Descrição</label>
+      <textarea formControlName="description" class="input" id="longText"></textarea>
+    </div>
+  </div>
+</form>

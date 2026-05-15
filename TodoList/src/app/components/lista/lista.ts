@@ -1,9 +1,10 @@
 import { Component, Input, output } from '@angular/core';
 import { Task } from '../../models/Task';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-lista',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './lista.html',
   styleUrl: './lista.css',
 })

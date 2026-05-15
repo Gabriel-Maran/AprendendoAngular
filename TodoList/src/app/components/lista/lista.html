@@ -11,7 +11,7 @@
       />
       <p class="columnDef task-title">{{ task.title }}</p>
       <p class="columnDef task-date center">{{ formatarData(task.date.toString()) }}</p>
-      <button class="columnDef btn">
+      <button [routerLink]="['/tasks', task.id]" class="columnDef btn">
         <img class="imgClick" [class.doneImg]="task.isDone" src="visualizar.png" alt="" />
       </button>
     </section>

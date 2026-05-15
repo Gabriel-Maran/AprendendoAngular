@@ -1,0 +1,33 @@
+<header>
+  <div class="header-left">
+    <button [routerLink]="['/home']" class="btn-voltar" title="Voltar para a Home">
+      <img src="voltar.png" class="img" alt="" />
+    </button>
+    <h2 id="title">{{ task()?.title || 'Tarefa sem Título' }}</h2>
+  </div>
+
+  <div class="header-actions">
+    <button (click)="voltar()" class="btn-action editar">
+      <span id="edit"></span>
+    </button>
+
+    <button (click)="deletarTask()" [routerLink]="['']" class="btn-action excluir">
+      <span id="delete"></span>
+    </button>
+  </div>
+</header>
+<p class="description">
+  {{ task()?.description || 'Nenhuma descrição fornecida para esta tarefa.' }}
+</p>
+
+@if (task()?.date) {
+  <div class="date-tag">📅 {{ task()!.date!.toString().split('-').reverse().join('/') }}</div>
+}
+
+@if (task()?.isDone) {
+  <div class="status concluida">✅ Task Concluída</div>
+} @else if (task()?.date ?? dataAgora() >= dataAgora()) {
+  <div class="status pendente">⚠️ Task Pendente</div>
+} @else {
+  <div class="status atrasada">🚨 Task Atrasada</div>
+}

@@ -1,0 +1,10 @@
+<!--
+  [nome] -> Propriedade 
+  (nome) -> Evento 
+  nome -> estatico 
+-->
+
+<div id="container">
+  <app-cadastro (onTaskCreated)="addNewTask($event)"></app-cadastro>
+  <app-lista [tasks]="tasks" (whenDoneATask)="doneTask($event.id)"></app-lista>
+</div>

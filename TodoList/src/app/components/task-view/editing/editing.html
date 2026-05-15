@@ -1,0 +1,86 @@
+@let title = formsEdit.get('title');
+@let date = formsEdit.get('date');
+
+<header class="task-header">
+  <div class="header-left">
+    <button (click)="voltar()" class="btn-circle" title="Voltar para a Home">
+      <img src="voltar.png" class="icon" alt="Voltar" />
+    </button>
+    <h2 class="task-title">{{ task()?.title || 'Tarefa sem Título' }}</h2>
+  </div>
+
+  <div class="header-actions">
+    <button
+      (click)="(atualizarForm)"
+      form="editForm"
+      class="btn-action confirmar"
+      title="Salvar Alterações"
+    >
+      <span id="confirm"></span>
+    </button>
+
+    <button (click)="voltar()" class="btn-action fechar" title="Fechar/Cancelar">
+      <span id="fechar"></span>
+    </button>
+  </div>
+</header>
+
+<main class="task-container">
+  <form [formGroup]="formsEdit" (ngSubmit)="atualizarForm()" id="editForm" class="task-form">
+    <div class="form-row">
+      <div class="form-group flex-2">
+        <label for="title">Título da Tarefa</label>
+        <input
+          formControlName="title"
+          class="form-input"
+          type="text"
+          id="title"
+          placeholder="Digite o título..."
+        />
+
+        @if (title && title.invalid && title.touched) {
+          <div class="error-container">
+            @if (title.hasError('required')) {
+              <p class="error-msg">Este campo é obrigatório.</p>
+            }
+            @if (title.hasError('minlength')) {
+              <p class="error-msg">O valor inserido é muito curto.</p>
+            }
+            @if (title.hasError('maxlength')) {
+              <p class="error-msg">O valor inserido é muito longo.</p>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- DATA -->
+      <div class="form-group flex-1">
+        <label for="calendario">Data Limite</label>
+        <input formControlName="date" class="form-input" id="calendario" type="date" />
+
+        @if (date && date.invalid && date.touched) {
+          <div class="error-container">
+            @if (date.hasError('required')) {
+              <p class="error-msg">Este campo é obrigatório.</p>
+            }
+            @if (date.hasError('dataPassada')) {
+              <p class="error-msg">A data não pode ser anterior a hoje.</p>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group flex-1">
+        <label for="longText">Descrição Detalhada</label>
+        <textarea
+          placeholder="Adicione uma descrição para esta tarefa..."
+          formControlName="description"
+          class="form-input form-textarea"
+          id="longText"
+        ></textarea>
+      </div>
+    </div>
+  </form>
+</main>

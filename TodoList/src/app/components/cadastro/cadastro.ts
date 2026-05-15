@@ -18,7 +18,7 @@ export class Cadastro {
       Validators.minLength(3),
       Validators.maxLength(25),
     ]),
-    date: new FormControl(new Date(), [Validators.required, dateNowOrGreater()]),
+    date: new FormControl(null, [Validators.required, dateNowOrGreater()]),
     description: new FormControl(''),
   });
   onTaskCreated = output<Task>();

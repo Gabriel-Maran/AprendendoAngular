@@ -1,0 +1,7 @@
+<section id="container">
+  @if (status === 'view') {
+    <app-viewing [task]="task()" (switchStatus)="switchStatus()"></app-viewing>
+  } @else {
+    <app-editing [task]="task()" (switchStatus)="switchStatus()"></app-editing>
+  }
+</section>

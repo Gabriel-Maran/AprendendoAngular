@@ -1,54 +1,55 @@
 @let title = forms.get('title');
 @let date = forms.get('date');
-
-<form [formGroup]="forms" (ngSubmit)="salvarForms()">
-  <div class="formDivision">
-    <!--TÍTULO-->
-    <div class="itensList">
-      @if (title && title.invalid && title.touched) {
-        @if (title.hasError('required')) {
-          <p class="requiredCampo">Este campo é obrigatório.</p>
-        } @else if (title.hasError('minlength')) {
-          <p class="requiredCampo">O valor inserido é muito curto.</p>
-        } @else if (title.hasError('maxlength')) {
-          <p class="requiredCampo">O valor inserido é muito longo.</p>
+<section id="container">
+  <form [formGroup]="forms" (ngSubmit)="salvarForms()">
+    <div class="formDivision">
+      <!--TÍTULO-->
+      <div class="itensList">
+        <label for="title">Título *</label>
+        <input formControlName="title" class="input" type="text" id="title" />
+        @if (title && title.invalid && title.touched) {
+          @if (title.hasError('required')) {
+            <p class="requiredCampo">Este campo é obrigatório.</p>
+          } @else if (title.hasError('minlength')) {
+            <p class="requiredCampo">O valor inserido é muito curto.</p>
+          } @else if (title.hasError('maxlength')) {
+            <p class="requiredCampo">O valor inserido é muito longo.</p>
+          }
         }
-      }
-      <label for="title">Título</label>
-      <input formControlName="title" class="input" type="text" id="title" />
-    </div>
+      </div>
 
-    <!--DATA-->
-    <div class="itensList">
-      @if (date && date.invalid && date.touched) {
-        @if (date.hasError('required')) {
-          <p class="requiredCampo">Este campo é obrigatório.</p>
-        } @else if (date.hasError('dataPassada')) {
-          <p class="requiredCampo">O dia inserido não pode ser antes de hoje.</p>
+      <!--DATA-->
+      <div class="itensList">
+        <label for="date">Data Limite *</label>
+        <input formControlName="date" class="input" id="calendario" type="date" />
+        @if (date && date.invalid && date.touched) {
+          @if (date.hasError('required')) {
+            <p class="requiredCampo">Este campo é obrigatório.</p>
+          } @else if (date.hasError('dataPassada')) {
+            <p class="requiredCampo">O dia inserido não pode ser antes de hoje.</p>
+          }
         }
-      }
-      <label for="date">Data Limite</label>
-      <input formControlName="date" class="input" id="calendario" type="date" />
+      </div>
+
+      <!--ADD-->
+      <div>
+        <button type="submit" id="addBtn">
+          <img id="imgAdd" src="add.png" alt="Adicionar item" />
+        </button>
+      </div>
     </div>
 
-    <!--ADD-->
-    <div>
-      <button type="submit" id="addBtn">
-        <img id="imgAdd" src="add.png" alt="Adicionar item" />
-      </button>
+    <div class="formDivision">
+      <!--DESCRIÇÃO-->
+      <div class="itensList">
+        <label for="description">Descrição</label>
+        <textarea
+          placeholder="SEM DESCRIÇÃO"
+          formControlName="description"
+          class="input"
+          id="longText"
+        ></textarea>
+      </div>
     </div>
-  </div>
-
-  <div class="formDivision">
-    <!--DESCRIÇÃO-->
-    <div class="itensList">
-      <label for="description">Descrição</label>
-      <textarea
-        placeholder="SEM DESCRIÇÃO"
-        formControlName="description"
-        class="input"
-        id="longText"
-      ></textarea>
-    </div>
-  </div>
-</form>
+  </form>
+</section>

@@ -1,8 +1,25 @@
+#container {
+  padding: 1.4rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-sizing: border-box;
+  margin: 1rem auto;
+  max-width: 600px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+}
+
 form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  align-items: flex-start;
+  gap: 1.25rem;
   width: 100%;
 }
 
@@ -10,71 +27,90 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: green;
+  background-color: #22c55e;
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   border: none;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  transition: all 0.2s ease;
+}
+
+#addBtn:hover {
+  background-color: #21b657;
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(33, 216, 100, 0.4);
+}
+
+#addBtn:active {
+  transform: scale(0.95);
 }
 
 #imgAdd {
-  width: 40px;
-  height: 40px;
-}
-#calendario:focus {
-  border-color: #0066cc;
-  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
 }
 
-#calendario:hover {
-  border-color: #b5b5b5;
-}
-
-.input {
+.input,
+#calendario {
   width: 100%;
   padding: 12px 16px;
-  border-radius: 8px;
-  font-size: 15px;
-  color: #6e6e6e;
-  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
   background-color: #ffffff;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
-  box-sizing: border-box; /* Adicione esta linha */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.input:hover,
+#calendario:hover {
+  border-color: #94a3b8;
+}
+
+.input:focus,
+#calendario:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+  background-color: #fff;
 }
 
 .formDivision {
   display: flex;
   width: 100%;
-  min-width: 350px;
-  gap: 10px;
-  align-items: center;
+  gap: 12px;
+  align-items: flex-end;
 }
 
 #longText {
   resize: none;
   height: 100px;
+  font-family: inherit;
 }
 
 label {
-  color: #595959;
+  color: #475569;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: -0.25rem;
 }
 
 .requiredCampo {
-  background-color: #fdefcd;
-  color: #7d5628;
+  color: #e06060;
   font-size: 0.875rem;
-  font-weight: 500;
-  text-align: center;
-  padding: 12px 16px;
-  border-radius: 6px;
-  display: block;
+  font-weight: 600;
   width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 12px;
+  margin: 0;
+  padding: 0;
 }
 
 .itensList {
   flex: 1;
   align-self: flex-start;
+  width: 100%;
 }

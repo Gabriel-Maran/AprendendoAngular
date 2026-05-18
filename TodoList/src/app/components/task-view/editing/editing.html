@@ -39,17 +39,15 @@
         />
 
         @if (title && title.invalid && title.touched) {
-          <div class="error-container">
-            @if (title.hasError('required')) {
-              <p class="error-msg">Este campo é obrigatório.</p>
-            }
-            @if (title.hasError('minlength')) {
-              <p class="error-msg">O valor inserido é muito curto.</p>
-            }
-            @if (title.hasError('maxlength')) {
-              <p class="error-msg">O valor inserido é muito longo.</p>
-            }
-          </div>
+          @if (title.hasError('required')) {
+            <p class="error-msg">Este campo é obrigatório.</p>
+          }
+          @if (title.hasError('minlength')) {
+            <p class="error-msg">O valor inserido é muito curto.</p>
+          }
+          @if (title.hasError('maxlength')) {
+            <p class="error-msg">O valor inserido é muito longo.</p>
+          }
         }
       </div>
 
@@ -62,9 +60,6 @@
           <div class="error-container">
             @if (date.hasError('required')) {
               <p class="error-msg">Este campo é obrigatório.</p>
-            }
-            @if (date.hasError('dataPassada')) {
-              <p class="error-msg">A data não pode ser anterior a hoje.</p>
             }
           </div>
         }

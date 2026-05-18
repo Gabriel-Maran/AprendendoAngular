@@ -159,7 +159,6 @@ body {
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
 .flex-1 {
@@ -177,6 +176,7 @@ body {
 }
 
 .form-input {
+  margin-top: 0.3rem;
   width: 100%;
   padding: 10px 14px;
   font-size: 15px;
@@ -210,10 +210,6 @@ body {
     flex-direction: column;
     gap: 1.25rem;
   }
-}
-
-.error-container {
-  margin-top: 0.25rem;
 }
 
 .error-msg {

@@ -29,4 +29,8 @@ export class Viewing {
       this.taskService.deleteTask(id);
     }
   }
+
+  dateToVisualDate(data: Date): string {
+    return data.toString().split('-').reverse().join('/');
+  }
 }

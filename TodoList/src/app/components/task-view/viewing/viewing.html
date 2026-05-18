@@ -21,7 +21,7 @@
 </p>
 
 @if (task()?.date) {
-  <div class="date-tag">📅 {{ task()!.date!.toString().split('-').reverse().join('/') }}</div>
+  <div class="date-tag">📅 {{ dateToVisualDate(task()!.date!) }}</div>
 }
 
 @if (task()?.isDone) {

@@ -1,6 +1,11 @@
 <section id="container">
   @for (task of tasks; track task.id) {
-    <section class="task-row" [class.border-bottom]="!$last" [class.done]="task.isDone">
+    <button
+      [routerLink]="['/tasks', task.id]"
+      class="task-row"
+      [class.border-bottom]="!$last"
+      [class.done]="task.isDone"
+    >
       <input
         class="check"
         type="checkbox"
@@ -8,12 +13,10 @@
         id=""
         [checked]="task.isDone"
         (change)="switchValue(task)"
+        (click)="$event.stopPropagation()"
       />
       <p class="columnDef task-title">{{ task.title }}</p>
-      <p class="columnDef task-date center">{{ formatarData(task.date.toString()) }}</p>
-      <button [routerLink]="['/tasks', task.id]" class="columnDef btn">
-        <img class="imgClick" [class.doneImg]="task.isDone" src="visualizar.png" alt="" />
-      </button>
-    </section>
+      <p class="columnDef task-date center">📅 {{ formatarData(task.date.toString()) }}</p>
+    </button>
   }
 </section>

@@ -23,9 +23,9 @@ export class Editing {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(3), Validators.maxLength(25)],
     }),
-    date: new FormControl('', {
+    date: new FormControl(new Date(), {
       nonNullable: true,
-      validators: [Validators.required, dateNowOrGreater()],
+      validators: [Validators.required],
     }),
     description: new FormControl('', { nonNullable: true }),
   });
@@ -34,15 +34,10 @@ export class Editing {
     effect(() => {
       const taskData = this.task();
       if (!taskData) return;
-      const localDate = taskData.date ? new Date(taskData.date) : null;
-      const formattedDate = localDate
-        ? `${localDate.getFullYear()}-${String(localDate.getMonth() + 1).padStart(2, '0')}-${String(localDate.getDate()).padStart(2, '0')}`
-        : '';
-
       this.formsEdit.patchValue({
         id: taskData.id,
         title: taskData.title,
-        date: formattedDate,
+        date: taskData.date,
         description: taskData.description,
       });
     });
@@ -59,15 +54,12 @@ export class Editing {
     }
 
     const rawValues = this.formsEdit.getRawValue();
-    const formDate = rawValues.date;
-
-    const parsedDate = formDate ? new Date(`${formDate}T00:00:00`) : new Date();
 
     const taskEdit: Task = {
       id: String(rawValues.id ?? ''),
       title: rawValues.title,
       description: rawValues.description,
-      date: parsedDate,
+      date: rawValues.date,
       isDone: this.task()?.isDone ?? false,
     };
 

@@ -1,0 +1,37 @@
+<section id="container">
+  <!-- 1. Adicionado o (ngSubmit) para chamar a função do componente -->
+  <form [formGroup]="forms">
+    <!--TÍTULO-->
+    <label for="titulo">Título</label>
+    <input type="text" id="titulo" formControlName="titulo" />
+
+    <!--DESCRIÇÃO-->
+    <label for="descricao">Descrição</label>
+    <input type="text" id="descricao" formControlName="descricao" />
+
+    <!--DATA-->
+    <label for="data">Data</label>
+    <input type="date" id="data" formControlName="data" />
+
+    <!--LOCAL-->
+    <label for="local">Local</label>
+    <input type="text" id="local" formControlName="local" />
+
+    <!--LOCAL-->
+    <label for="local">Local</label>
+    <input type="text" id="local" formControlName="local" />
+
+    <!--PREÇO-->
+    <label for="preco">Preço</label>
+    <input type="number" id="preco" formControlName="preco" />
+
+    <!--CATEGORIA-->
+    <label for="categoria">Categoria</label>
+    <select id="categoria" formControlName="categoria">
+      <option value="">Selecione uma categoria</option>
+      <option value="tecnologia">TESTE</option>
+      <option value="saude">TESTE1</option>
+      <option value="educacao">TESTE2</option>
+    </select>
+  </form>
+</section>

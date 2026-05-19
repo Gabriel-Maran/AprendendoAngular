@@ -1,11 +1,14 @@
 <header>
   <section id="search">
-    <button id="btnPesquisar">
+    <button id="btnPesquisar" (click)="onSearch()">
       <img id="imgPesquisa" src="search.svg" alt="" />
     </button>
-    <input type="text" name="search" id="input" />
+    <input type="text" name="search" id="input" [(ngModel)]="auxSearch" />
   </section>
   <button id="btnAdd" [routerLink]="['/event/new']">
     <img id="imgAdd" src="add.svg" alt="" />
   </button>
 </header>
+<main>
+  <app-home-view [eventos]="eventos"></app-home-view>
+</main>

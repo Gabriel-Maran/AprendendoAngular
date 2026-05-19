@@ -1,0 +1,37 @@
+<div class="eventos-grid">
+  @for (evento of eventos(); track evento.id || $index) {
+    <article
+      (click)="navegar(evento.id)"
+      class="evento-card"
+      [class.evento-destaque]="evento.destaque"
+    >
+      @if (evento.destaque) {
+        <span class="badge-destaque">★ Destaque</span>
+      }
+
+      <div class="img-container">
+        <img class="evento-img" [src]="evento.imagemUrl" [alt]="evento.titulo" />
+        <span class="badge-categoria">{{ evento.categoria }}</span>
+      </div>
+
+      <div class="evento-conteudo">
+        <h3 class="evento-titulo">{{ evento.titulo }}</h3>
+        <p class="evento-descricao">{{ evento.descricao }}</p>
+
+        <div class="evento-detalhes">
+          <p class="info-item">📍 {{ evento.local }}</p>
+          <p class="info-item">📅 {{ evento.data | dateFormat }}</p>
+          <p class="info-item preco">💰 {{ evento.preco | currencyFormat }}</p>
+        </div>
+
+        <div class="divisor"></div>
+
+        <div class="evento-rodape">
+          <p class="evento-vagas">
+            <strong>Participantes:</strong> {{ evento.inscritos }}/{{ evento.capacidadeMaxima }}
+          </p>
+        </div>
+      </div>
+    </article>
+  }
+</div>

@@ -1,0 +1,126 @@
+.eventos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.evento-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.evento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo especial para quando destaque for true */
+.evento-card.evento-destaque {
+  border: 2px solid #a7a39e;
+}
+
+.badge-destaque {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: #a7a39e;
+  color: #ffffff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  z-index: 10;
+}
+
+.img-container {
+  position: relative;
+  width: 100%;
+  height: 12rem;
+  background-color: #f3f4f6;
+}
+
+.evento-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge-categoria {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: rgba(31, 41, 55, 0.8);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.evento-conteudo {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.evento-titulo {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.evento-descricao {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.evento-detalhes {
+  margin-top: auto;
+}
+
+.info-item {
+  margin: 0 0 0.35rem 0;
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+.info-item.preco {
+  font-weight: 600;
+  color: #059669;
+}
+
+.divisor {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 0.75rem 0;
+}
+
+.evento-rodape {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.evento-vagas {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #374151;
+}

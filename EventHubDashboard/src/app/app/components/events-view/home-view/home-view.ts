@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { EventService } from '../../../services/event/event-service';
 import { Evento } from '../../../models/Evento';
 import { CurrencyFormatPipe } from '../../../pipes/currency/currency-format-pipe';

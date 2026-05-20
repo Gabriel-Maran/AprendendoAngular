@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, OnInit } from '@angular/core';
+import { Component, computed, effect, inject, input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Categorias } from '../../models/enums/Categorias';
 import { Validacoes } from '../../utils/Validacoes';
 import { Toggle } from '../../components/toggle/toggle';
 import { Evento } from '../../models/Evento';
 import { EventService } from '../../services/event/event-service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-new-event',
@@ -14,27 +14,38 @@ import { RouterLink } from '@angular/router';
   templateUrl: './new-event.html',
   styleUrl: './new-event.css',
 })
-export class NewEvent implements OnInit {
+export class NewEvent {
   id = input<string>();
   eventos: Evento[] = [];
+  private router = inject(Router);
   Categorias = Categorias;
+  private eventService = inject(EventService);
+  isEdit = computed(() => !!this.id());
 
-  constructor(private eventService: EventService) {
-    //if (this.id != null && this.id != undefined) {
-    //  this.forms.patchValue({
-    //    titulo: formValues.titulo || '',
-    //    descricao: formValues.descricao || '',
-    //    local: formValues.local || '',
-    //    preco: formValues.preco ?? 0,
-    //    categoria: formValues.categoria as any,
-    //    imagemUrl: formValues.imagemUrl || '',
-    //    inscritos: formValues.inscritos ?? 0,
-    //    destaque: formValues.destaque ?? false,
-    //    data: formValues.date!.toString(),
-    //    capacidadeMaxima: formValues.capacidadeMaxima!,
-    //    destaque: !valorAtual,
-    //  });
-    //}
+  constructor() {
+    // O effect reage automaticamente sempre que o "id" mudar
+    effect(() => {
+      const currentId = this.id();
+
+      if (currentId) {
+        const eventoSearch = this.eventService.getEvent(currentId);
+
+        if (eventoSearch) {
+          this.forms.patchValue({
+            titulo: eventoSearch.titulo ?? '',
+            descricao: eventoSearch.descricao ?? '',
+            local: eventoSearch.local ?? '',
+            preco: eventoSearch.preco ?? 0,
+            categoria: eventoSearch.categoria as Categorias,
+            imagemUrl: eventoSearch.imagemUrl ?? '',
+            inscritos: eventoSearch.inscritos ?? 0,
+            destaque: eventoSearch.destaque ?? false,
+            date: eventoSearch.data,
+            capacidadeMaxima: eventoSearch.capacidadeMaxima,
+          });
+        }
+      }
+    });
   }
 
   forms = new FormGroup(
@@ -90,24 +101,30 @@ export class NewEvent implements OnInit {
     }
 
     const formValues = this.forms.getRawValue();
-
-    const novoEvento: Evento = {
-      id: crypto.randomUUID(),
-      titulo: formValues.titulo || '',
-      descricao: formValues.descricao || '',
-      local: formValues.local || '',
+    const idEvento = this.id() ?? crypto.randomUUID();
+    const eventoToSave: Evento = {
+      id: idEvento!,
+      titulo: formValues.titulo ?? '',
+      descricao: formValues.descricao ?? '',
+      local: formValues.local ?? '',
       preco: formValues.preco ?? 0,
       categoria: formValues.categoria as any,
-      imagemUrl: formValues.imagemUrl || '',
+      imagemUrl: formValues.imagemUrl ?? '',
       inscritos: formValues.inscritos ?? 0,
       destaque: formValues.destaque ?? false,
       data: formValues.date!.toString(),
       capacidadeMaxima: formValues.capacidadeMaxima!,
     };
-    console.log(novoEvento);
-    this.eventService.addEvent(novoEvento);
+    if (this.isEdit()) {
+      this.eventService.updateEvent(this.id()!, eventoToSave);
+    } else {
+      this.eventService.addEvent(eventoToSave);
+    }
     this.forms.reset({});
   }
 
-  ngOnInit(): void {}
+  excluirEvento() {
+    this.eventService.deleteEvent(this.id() ?? '0');
+    this.router.navigate(['/home']);
+  }
 }

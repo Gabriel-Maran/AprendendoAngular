@@ -3,7 +3,12 @@
     <a id="voltar" [routerLink]="['/home']">
       <img id="imgVoltar" src="voltar.png" alt="Voltar" />
     </a>
-    <p id="titleText">Criando Novo envento</p>
+    <p id="titleText">{{ isEdit() ? 'Editar Evento' : 'Criar Novo Evento' }}</p>
+    @if (isEdit()) {
+      <button (click)="excluirEvento()" id="btnExcluir">
+        <img id="imgExcluir" src="delete.png" alt="" />
+      </button>
+    }
   </div>
   <form [formGroup]="forms">
     @for (campo of campos; track campo.id) {
@@ -60,7 +65,7 @@
     </div>
     <div id="submitDiv">
       <button (click)="salvarForms()" id="buttonSubmit" type="submit" [routerLink]="['/home']">
-        Enviar
+        {{ isEdit() ? 'Salvar' : 'Enviar' }}
       </button>
     </div>
   </form>

@@ -1,0 +1,56 @@
+<!-- CORREÇÃO: O grupo global fica no pai de todos para interligar ambas as matrizes -->
+<section class="contentor-duplo" cdkDropListGroup>
+  <!-- Matriz 0 -->
+  <div class="grade-matriz">
+    @for (linhaData of matrizes[0]; let i = $index; track i) {
+      @for (item of linhaData; let j = $index; track j) {
+        <div
+          cdkDropList
+          [cdkDropListData]="{ linha: i, col: j, fromM: 0 }"
+          (cdkDropListDropped)="aoSoltar($event)"
+          class="celula-drop"
+        >
+          <div
+            class="item-drag"
+            cdkDrag
+            [cdkDragData]="{ linha: i, col: j, fromM: 0 }"
+            [cdkDragDisabled]="item.isEmpty"
+          >
+            @if (item.isEmpty) {
+              <button (click)="criaItemPos(i, j, 0)">ADD</button>
+            } @else {
+              <p class="bloco">{{ item.nome }}</p>
+            }
+          </div>
+        </div>
+      }
+    }
+  </div>
+  <!-- Matriz 1 -->
+  <div style="background-color: black; width: 1px"></div>
+  <div class="grade-matriz">
+    @for (linhaData of matrizes[1]; let i = $index; track i) {
+      @for (item of linhaData; let j = $index; track j) {
+        <div
+          cdkDropList
+          [cdkDropListData]="{ linha: i, col: j, fromM: 1 }"
+          (cdkDropListDropped)="aoSoltar($event)"
+          class="celula-drop"
+        >
+          <div
+            class="item-drag"
+            cdkDrag
+            [cdkDragData]="{ linha: i, col: j, fromM: 1 }"
+            [cdkDragDisabled]="item.isEmpty"
+          >
+            @if (item.isEmpty) {
+              <button (click)="criaItemPos(i, j, 1)">ADD</button>
+            } @else {
+              <p class="bloco">{{ item.nome }}</p>
+            }
+          </div>
+        </div>
+      }
+    }
+  </div>
+</section>

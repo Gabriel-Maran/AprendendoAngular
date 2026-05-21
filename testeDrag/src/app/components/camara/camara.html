@@ -1,20 +1,20 @@
 <div class="grade-matriz">
-  @for (linhaData of matriz(); let i = $index; track i) {
+  @for (linhaData of listaMatrizes()()[idMatriz()]; let i = $index; track i) {
     @for (item of linhaData; let j = $index; track j) {
       <div
         cdkDropList
-        [cdkDropListData]="{ linha: i, col: j, fromM: 1 }"
+        [cdkDropListData]="{ linha: i, col: j, fromM: idMatriz() }"
         (cdkDropListDropped)="aoSoltar($event)"
         class="celula-drop"
       >
         <div
           class="item-drag"
           cdkDrag
-          [cdkDragData]="{ linha: i, col: j, fromM: 1 }"
+          [cdkDragData]="{ linha: i, col: j, fromM: idMatriz() }"
           [cdkDragDisabled]="item.isEmpty"
         >
           @if (item.isEmpty) {
-            <button (click)="criaItemPos(i, j, 1)">ADD</button>
+            <button (click)="criaItemPos(i, j)">ADD</button>
           } @else {
             <p class="bloco">{{ item.nome }}</p>
           }

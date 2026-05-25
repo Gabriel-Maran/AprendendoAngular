@@ -1,0 +1,35 @@
+#container {
+  display: flex; /* Garante alinhamento correto do elemento filho */
+  height: 24px; /* Aumentado ligeiramente para o texto caber melhor em ecrãs pequenos */
+  width: 100%; /* Ocupa a largura total do elemento pai */
+  max-width: 500px; /* Limite máximo para ecrãs grandes não ficar gigante */
+  background-color: var(--bg-bar-empty);
+  border-radius: 12px;
+  overflow: hidden; /* Garante que os cantos do preenchimento não saiam da barra */
+  position: relative; /* Base para o alinhamento do texto */
+  margin: 0 auto; /* Centra a barra na página */
+}
+
+#completed {
+  height: 100%;
+  background-color: var(--heal-green);
+  transition: width 0.3s ease-in-out; /* Animação suave quando o XP muda */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Texto absoluto para ficar sempre centrado, independentemente do progresso */
+.xp-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--text-high-contrast);
+  pointer-events: none; /* Impede que o texto atrapalhe cliques na barra */
+}

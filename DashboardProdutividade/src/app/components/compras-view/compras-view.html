@@ -1,0 +1,54 @@
+<header class="inventory-header">
+  <button class="btn-primary" (click)="openModal()">
+    <img src="/gift.svg" alt="" aria-hidden="true" />
+    Adicionar Recompensa
+  </button>
+</header>
+
+<app-modal-reward (closeModal)="closeModal()" [isOpen]="modalOpen()" />
+
+<main class="inventory-grid">
+  @for (compra of compras(); track $index) {
+    <div
+      class="card-item"
+      [style.--rarity-color]="'var(--rarity-' + compra.rarity.toLowerCase() + ')'"
+    >
+      <!-- Topo do Card: Identificação de Tipo e Data -->
+      <div class="card-meta">
+        <span class="badge-rarity">{{ compra.rarity }}</span>
+        <span class="purchase-date">{{
+          compra.purchased ? 'Já adquirido' : 'Ainda não adquirido'
+        }}</span>
+      </div>
+
+      <!-- Corpo do Card: Nome e Descrição -->
+      <div class="card-body">
+        <h2 class="item-name">{{ compra.name }}</h2>
+        <p class="item-description">{{ compra.description }}</p>
+      </div>
+
+      <!-- Linha de Status: Estado de Equipamento e Preço -->
+      <div class="card-status-line">
+        <span class="status-indicator" [class.used]="compra.is_used">
+          {{ compra.is_used ? 'Utilizado' : 'Disponível' }}
+        </span>
+
+        <div class="currency-tag">
+          <span class="gold-icon"></span>
+          <span class="gold-value">{{ compra.value }}</span>
+        </div>
+      </div>
+
+      <!-- Zona de Ações: Botões Alinhados no Fundo -->
+      <div class="card-actions">
+        @if (compra.purchased) {
+          <button class="btn-action btn-use" (click)="usar(compra.id)" [disabled]="compra.is_used">
+            {{ compra.is_used ? 'Já usado' : 'Utilizar' }}
+          </button>
+        } @else {
+          <button class="btn-action btn-buy" (click)="comprar(compra.id)">Comprar Já</button>
+        }
+      </div>
+    </div>
+  }
+</main>

@@ -1,0 +1,50 @@
+<app-header-default></app-header-default>
+
+<main>
+  <nav class="navBar" aria-label="Navegação principal">
+    <ul>
+      <li>
+        <button
+          (click)="switchBar('HABITOS')"
+          type="button"
+          [aria-selected]="selectedBar === 'HABITOS'"
+        >
+          Hábitos
+        </button>
+      </li>
+      <li>
+        <button
+          (click)="switchBar('TAREFAS_DIARIAS')"
+          type="button"
+          [aria-selected]="selectedBar === 'TAREFAS_DIARIAS'"
+        >
+          Tarefas Diárias
+        </button>
+      </li>
+      <li>
+        <button
+          (click)="switchBar('MISSOES')"
+          type="button"
+          [aria-selected]="selectedBar === 'MISSOES'"
+        >
+          Missões
+        </button>
+      </li>
+      <li>
+        <button
+          (click)="switchBar('COMPRAS')"
+          type="button"
+          [aria-selected]="selectedBar === 'COMPRAS'"
+        >
+          Compras
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <section aria-live="polite">
+    @if (selectedBar === 'COMPRAS') {
+      <app-compras-view />
+    }
+  </section>
+</main>

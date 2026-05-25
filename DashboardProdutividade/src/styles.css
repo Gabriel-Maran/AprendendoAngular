@@ -1,0 +1,61 @@
+:root {
+  /* Caminho do ficheiro SVG */
+  --person-url: url('/person.svg');
+  --coin-url: url('/coin.svg');
+
+  /* Cores de Fundo (Profundidade e Sofisticação) */
+  --bg-deep-void: #0d0e12; /* Azul-escuro quase preto, mais imersivo */
+  --bg-abyss-card: #16171d; /* Cartões com ligeiro tom azulado */
+  --bg-abyss-card-hover: #1f212a; /* Estado hover para elementos interativos */
+  --bg-bar-empty: #242631; /* Fundo neutro para barras de progresso vazias */
+
+  /* Margens e Linhas Divisórias */
+  --border-grim: #242631; /* Margens suaves e integradas */
+  --border-grim-light: #494c61; /* Margens para destaques e divisórias ativas */
+
+  /* Cores de Estado e Estatísticas (RPG Premium) */
+  --hp-red: #f75a68; /* Vermelho pastel vivo (Vida) */
+  --hp-red-glow: rgba(247, 90, 104, 0.15);
+
+  --mana-purple: #996dff; /* Roxo místico vibrante (Mana/Magia) */
+  --mana-purple-glow: rgba(153, 109, 255, 0.15);
+
+  --stamina-yellow: #ffcd3c; /* Amarelo energia/vigor (Stamina) */
+  --stamina-glow: rgba(255, 205, 60, 0.12);
+
+  /* Dinheiro e Recompensas */
+  --gold-hoard: #fba94c; /* Ouro âmbar valioso (Moedas/Créditos) */
+  --heal-green: #00b37e; /* Verde esmeralda (Cura/Sucesso/Buff) */
+
+  /* Sistema de Raridade de Itens / Recompensas */
+  --rarity-common: #8d91a5; /* Cinza (Comum) */
+  --rarity-uncommon: #48c774; /* Verde (Incomum) */
+  --rarity-rare: #3273dc; /* Azul (Raro) */
+  --rarity-epic: #996dff; /* Roxo (Épico - mapeado para a tua mana) */
+  --rarity-legendary: #ffdd57; /* Laranja/Ouro (Lendário) */
+  --rarity-mythic: #ff3860; /* Vermelho Carmesim (Mítico) */
+
+  /* Estados Alterados / Debuffs */
+  --status-poison: #20c997; /* Verde veneno */
+  --status-burn: #ff9f43; /* Laranja fogo */
+  --status-frozen: #0abde3; /* Azul gelo */
+  --status-curse: #5f27cd; /* Roxo sombrio */
+
+  /* Cores de Texto (Hierarquia Clara) */
+  --text-high-contrast: #f0f2f5; /* Branco suave para leitura principal */
+  --text-muted-gray: #8d91a5; /* Cinza azulado para subtítulos */
+  --text-dark-void: #0d0e12; /* Texto escuro para contrastar em fundos claros (ex: badges) */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: var(--bg-deep-void);
+  color: var(--text-high-contrast);
+  font-family: sans-serif;
+}

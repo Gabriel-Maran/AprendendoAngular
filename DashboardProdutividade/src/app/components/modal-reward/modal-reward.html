@@ -1,0 +1,43 @@
+<dialog #modalReward class="reward-modal">
+  <div class="modal-content">
+    <h2>Adicionar Recompensa</h2>
+
+    <!-- CORRIGIDO: Agora chama uma função onSubmit() ao enviar -->
+    <form [formGroup]="forms" (ngSubmit)="onSubmit()">
+      <!-- Loop pelos campos definidos no array 'campos' -->
+      @for (campo of campos; track campo.id) {
+        <div class="form-group">
+          <label [for]="campo.id">{{ campo.label }}</label>
+          <input
+            autocomplete="off"
+            [id]="campo.id"
+            [type]="campo.type"
+            [formControlName]="campo.id"
+          />
+
+          <!-- Erros de Validação Dinâmicos -->
+          @if (forms.get(campo.id)?.touched && forms.get(campo.id)?.invalid) {
+            <small class="error-msg">Campo inválido.</small>
+          }
+        </div>
+      }
+
+      <!-- Campo Select manual para a Rarity -->
+      <div class="form-group">
+        <label for="rarity">Raridade</label>
+        <select id="rarity" formControlName="rarity">
+          <option value="common">Comum</option>
+          <option value="rare">Raro</option>
+          <option value="epic">Épico</option>
+          <option value="legendary">Lendário</option>
+        </select>
+      </div>
+
+      <!-- Ações do Formulário -->
+      <div class="modal-actions">
+        <button type="button" (click)="close()">Cancelar</button>
+        <button type="submit" [disabled]="forms.invalid">Salvar</button>
+      </div>
+    </form>
+  </div>
+</dialog>

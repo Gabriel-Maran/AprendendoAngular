@@ -1,0 +1,17 @@
+<header>
+  <div id="left-content">
+    <button (click)="spendCoins(10)" id="person-profile">
+      <span class="icone-svg"></span>
+    </button>
+    <div id="person-info">
+      <p>Nome</p>
+      <app-xp-bar />
+    </div>
+  </div>
+  <div id="right-content">
+    <section (click)="addCoins(10)" id="coin-profile">
+      <span class="coin-svg"></span>
+    </section>
+    <p>{{ coins() }}</p>
+  </div>
+</header>

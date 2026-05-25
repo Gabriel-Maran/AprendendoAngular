@@ -1,0 +1,64 @@
+main {
+  margin: 0 auto;
+  padding: 20px 16px;
+  max-width: 1000px;
+  width: 90%;
+}
+
+/* Menu Estilo RPG Segmented Control */
+.navBar ul {
+  display: flex;
+  list-style: none;
+  padding: 6px;
+  background-color: var(--bg-abyss-card);
+  border: 1px solid var(--border-grim);
+  border-radius: 14px;
+  gap: 6px;
+}
+
+.navBar li {
+  flex: 1;
+}
+
+/* Abas/Botões de Seleção */
+.navBar button {
+  width: 100%;
+  background: none;
+  border: 1px solid transparent;
+  padding: 14px 8px;
+  font-size: 13px;
+  font-weight: 700;
+  height: 100%;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted-gray);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efeito Hover e Foco por Teclado */
+.navBar button:hover,
+.navBar button:focus-visible {
+  background-color: var(--bg-abyss-card-hover);
+  color: var(--text-high-contrast);
+  outline: none;
+}
+
+/* Separador Ativo (Estética de Item Épico/Místico) */
+.navBar button[aria-selected='true'] {
+  background-color: var(--bg-bar-empty);
+  color: var(--mana-purple);
+  border-color: var(--border-grim-light);
+  box-shadow: 0 0 12px var(--mana-purple-glow);
+}
+
+/* Painel de Conteúdo */
+section {
+  margin-top: 20px;
+  padding: 24px;
+  background-color: var(--bg-abyss-card);
+  border: 1px solid var(--border-grim);
+  border-radius: 16px;
+  min-height: 300px;
+}

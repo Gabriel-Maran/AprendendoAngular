@@ -1,0 +1,38 @@
+<dialog #modalHabitos class="reward-modal">
+  <div class="modal-content">
+    <h2 id="modal-title">Adicionar Recompensa</h2>
+
+    <form [formGroup]="forms" (ngSubmit)="onSubmit()" aria-labelledby="modal-title">
+      @for (campo of campos; track campo.id) {
+        <div class="form-group">
+          <label [for]="campo.id">{{ campo.label }}</label>
+
+          @if (campo.type === 'choice') {
+            <app-toggle
+              [id]="campo.id"
+              [ativo]="forms.get(campo.id)?.value ?? false"
+              (alternar)="mudaIsGood()"
+            />
+          } @else {
+            <input
+              autocomplete="off"
+              [id]="campo.id"
+              [type]="campo.type"
+              [formControlName]="campo.id"
+              [attr.aria-invalid]="forms.get(campo.id)?.touched && forms.get(campo.id)?.invalid"
+            />
+          }
+
+          @if (forms.get(campo.id)?.touched && forms.get(campo.id)?.invalid) {
+            <small class="error-msg" role="alert">Campo inválido.</small>
+          }
+        </div>
+      }
+
+      <div class="modal-actions">
+        <button type="button" (click)="close()">Cancelar</button>
+        <button type="submit" [disabled]="forms.invalid">Salvar</button>
+      </div>
+    </form>
+  </div>
+</dialog>

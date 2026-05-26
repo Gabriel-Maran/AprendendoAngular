@@ -1,5 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
-import { XpBar } from '../xp-bar/xp-bar';
+import { Component, inject } from '@angular/core';
+import { XpBar } from '../view/xp-bar/xp-bar';
 import { CoinService } from '../../services/coin/coin-service';
 
 @Component({
@@ -10,7 +10,7 @@ import { CoinService } from '../../services/coin/coin-service';
 })
 export class HeaderDefault {
   coinService = inject(CoinService);
-  coins = signal<number>(this.coinService.getCoins());
+  protected coins = this.coinService.coin;
 
   addCoins(qntdd: number) {
     this.coinService.addCoins(qntdd);

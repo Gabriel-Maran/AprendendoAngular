@@ -1,8 +1,8 @@
 import { Component, effect, ElementRef, inject, input, output, viewChild } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Rarity } from '../../model/Rarity';
-import { RewardService } from '../../services/reward/reward-service';
-import { Reward } from '../../model/Reward';
+import { Rarity } from '../../../model/Rarity';
+import { RewardService } from '../../../services/reward/reward-service';
+import { Reward } from '../../../model/Reward';
 
 @Component({
   selector: 'app-modal-reward',

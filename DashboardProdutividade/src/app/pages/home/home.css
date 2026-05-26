@@ -9,11 +9,9 @@ main {
 .navBar ul {
   display: flex;
   list-style: none;
-  padding: 6px;
   background-color: var(--bg-abyss-card);
   border: 1px solid var(--border-grim);
   border-radius: 14px;
-  gap: 6px;
 }
 
 .navBar li {
@@ -26,7 +24,7 @@ main {
   background: none;
   border: 1px solid transparent;
   padding: 14px 8px;
-  font-size: 13px;
+  font-size: 1em;
   font-weight: 700;
   height: 100%;
   text-transform: uppercase;

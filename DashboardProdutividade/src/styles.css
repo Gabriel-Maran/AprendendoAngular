@@ -45,6 +45,16 @@
   --text-high-contrast: #f0f2f5; /* Branco suave para leitura principal */
   --text-muted-gray: #8d91a5; /* Cinza azulado para subtítulos */
   --text-dark-void: #0d0e12; /* Texto escuro para contrastar em fundos claros (ex: badges) */
+
+  --exp-blue: #208bff;
+  --level-cyan: #00d2df;
+
+  /* Alinhamento de Feedback (Sucesso / Falha) */
+  --color-good: #00b37e; /* Verde esmeralda (Mapeado para --heal-green) */
+  --color-good-glow: rgba(0, 179, 126, 0.15);
+
+  --color-bad: #f75a68; /* Vermelho pastel vivo (Mapeado para --hp-red) */
+  --color-bad-glow: rgba(247, 90, 104, 0.15);
 }
 
 * {
@@ -58,4 +68,41 @@ body {
   background-color: var(--bg-deep-void);
   color: var(--text-high-contrast);
   font-family: sans-serif;
+}
+
+/* Remove as flechas em navegadores baseados em Webkit (Chrome, Safari, Edge, Opera) */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove as flechas no Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+@media screen and (max-width: 1200px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  body {
+    font-size: 10px;
+  }
 }

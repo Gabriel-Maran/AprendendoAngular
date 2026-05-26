@@ -1,0 +1,56 @@
+<header class="inventory-header">
+  <button class="btn-primary" (click)="openModal()">
+    <img src="/gift.svg" alt="" aria-hidden="true" />
+    Adicionar Tarefa Diária
+  </button>
+</header>
+
+<app-modal-daily-tasks (closeModal)="closeModal()" [isOpen]="modalOpen()" />
+
+<main class="inventory-grid">
+  @for (task of dailyTasksRaw(); track task.id) {
+    <div
+      class="card-item"
+      [style.--type-color]="task.isDone ? 'var(--color-good)' : 'var(--color-bad)'"
+    >
+      <!-- Topo do Card: Status da Tarefa (Concluída ou Pendente) -->
+      <div class="card-meta">
+        <span class="badge-rarity" [class.good]="task.isDone">
+          {{ task.isDone ? 'Concluída' : 'Pendente' }}
+        </span>
+        <span class="purchase-date">ID: #{{ task.id }}</span>
+      </div>
+
+      <!-- Corpo do Card: Título e Descrição -->
+      <div class="card-body">
+        <h2 class="item-name">{{ task.title }}</h2>
+        <p class="item-description">{{ task.description }}</p>
+      </div>
+
+      <!-- Linha de Status: Recompensas (Moedas e XP) -->
+      <div class="card-status-line">
+        <div class="currency-tag">
+          <span class="xp-icon">⚡</span>
+          <span class="xp-value">{{ task.xp }} XP</span>
+        </div>
+
+        <div class="currency-tag">
+          <span class="gold-icon">🪙</span>
+          <span class="gold-value">{{ task.coin }}</span>
+        </div>
+      </div>
+
+      <!-- Zona de Ações: Marcar como Concluída ou Alternar Estado -->
+      <div class="card-actions">
+        <button
+          class="btn-action"
+          [class.btn-use]="!task.isDone"
+          [class.btn-buy]="task.isDone"
+          (click)="completeTask(task.id)"
+        >
+          {{ task.isDone ? 'Tarefa Concluída' : 'Concluir Tarefa' }}
+        </button>
+      </div>
+    </div>
+  }
+</main>

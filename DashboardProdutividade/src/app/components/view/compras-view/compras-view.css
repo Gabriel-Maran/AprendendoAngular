@@ -1,8 +1,8 @@
 /* --- Cabeçalho e Botão do Modal --- */
 .inventory-header {
-  padding: 2rem 2rem 0;
+  padding: 2rem 2rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .btn-primary {
@@ -30,7 +30,7 @@
 /* --- Grelha Principal do Inventário --- */
 .inventory-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1.5rem;
   padding: 2rem;
 }
@@ -193,4 +193,14 @@
 
 .btn-buy:hover {
   background-color: #ffbe6b;
+}
+
+@media screen and (max-width: 800px) {
+  .inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 1em;
+    padding-top: 2em;
+  }
 }

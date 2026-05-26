@@ -1,0 +1,52 @@
+<header class="inventory-header">
+  <button class="btn-primary" (click)="openModal()">
+    <img src="/gift.svg" alt="" aria-hidden="true" />
+    Adicionar habito
+  </button>
+</header>
+
+<app-modal-habitos (closeModal)="closeModal()" [isOpen]="modalOpen()" />
+<main class="inventory-grid">
+  @for (habito of habitosRaw(); track habito.id) {
+    <div
+      class="card-item"
+      [style.--type-color]="habito.isGood ? 'var(--color-good)' : 'var(--color-bad)'"
+    >
+      <!-- Topo do Card: Tipo de Hábito (Bom/Mau) -->
+      <div class="card-meta">
+        <span class="badge-rarity" [class.good]="habito.isGood">
+          {{ habito.isGood ? 'Bom Hábito' : 'Mau Hábito' }}
+        </span>
+        <span class="purchase-date">ID: #{{ habito.id }}</span>
+      </div>
+
+      <!-- Corpo do Card: Título e Descrição -->
+      <div class="card-body">
+        <h2 class="item-name">{{ habito.title }}</h2>
+        <p class="item-description">{{ habito.description }}</p>
+      </div>
+
+      <!-- Linha de Status: Recompensas (Moedas e XP) -->
+      <div class="card-status-line">
+        <div class="currency-tag">
+          <span class="xp-icon">⚡</span>
+          <span class="xp-value">{{ habito.xp }} XP</span>
+        </div>
+
+        <div class="currency-tag">
+          <span class="gold-icon">🪙</span>
+          <span class="gold-value">{{ habito.coin }}</span>
+        </div>
+      </div>
+
+      <!-- Zona de Ações: Validar ou Marcar Hábito -->
+      <div class="card-actions">
+        @if (habito.isGood) {
+          <button class="btn-action btn-buy" (click)="use(habito.id)">Realizei!</button>
+        } @else {
+          <button class="btn-action btn-use" (click)="use(habito.id)">Recaí...</button>
+        }
+      </div>
+    </div>
+  }
+</main>

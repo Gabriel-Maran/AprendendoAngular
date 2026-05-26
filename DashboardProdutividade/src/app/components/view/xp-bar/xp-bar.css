@@ -1,0 +1,53 @@
+#handler {
+  display: flex;
+  align-items: center;
+  color: var(--level-cyan);
+  gap: 12px; /* Espaçamento ideal entre o nível e a barra */
+}
+
+#handler > p {
+  font-weight: 800;
+  font-size: 16px;
+  margin: 0;
+  line-height: 1;
+}
+
+#container {
+  display: flex;
+  height: 20px; /* Um pouco mais fina traz um aspecto muito mais premium */
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--bg-bar-empty);
+  border-radius: 99px; /* Cantos totalmente arredondados estilo pílula */
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); /* Profundidade sutil no fundo */
+}
+
+#completed {
+  height: 100%;
+  background-color: var(--exp-blue);
+  border-radius: 99px;
+  /* CORREÇÃO: A transição de movimento foi movida para o elemento certo */
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Brilho neon discreto no preenchimento da barra */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Texto absoluto centralizado */
+.xp-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  font-size: 11px; /* Fonte ligeiramente menor para não sufocar a barra */
+  font-weight: 700;
+  color: var(--text-high-contrast);
+  letter-spacing: 0.5px;
+  pointer-events: none;
+  /* Sombra no texto garante leitura mesmo quando a barra passar por baixo dele */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}

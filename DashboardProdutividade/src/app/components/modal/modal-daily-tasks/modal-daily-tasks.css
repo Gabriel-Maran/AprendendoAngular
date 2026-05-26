@@ -1,0 +1,191 @@
+/* Container Principal do Modal (O elemento <dialog>) */
+.reward-modal {
+  border: none;
+  border-radius: 12px;
+  padding: 0;
+  background: transparent;
+  width: 100%;
+  max-width: 500px;
+  margin: auto; /* Centraliza horizontal e verticalmente o <dialog> */
+}
+
+/* Pseudo-elemento para escurecer o fundo atrás do modal */
+.reward-modal::backdrop {
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Conteúdo do Modal (Card Principal) */
+.modal-content {
+  background-color: var(--bg-abyss-card);
+  border: 1px solid var(--border-grim);
+  border-radius: 12px;
+  width: 100%; /* Respeita o max-width do pai */
+  padding: 28px;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+  box-sizing: border-box; /* Garante que o padding não quebre a largura */
+}
+
+/* Título do Modal */
+.modal-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-high-contrast);
+  margin-bottom: 24px;
+  margin-top: 0; /* Remove margens nativas indesejadas */
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--border-grim);
+  padding-bottom: 12px;
+}
+
+/* Estrutura do Formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Grupos de Campos (Label + Input) */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Rótulos (Labels) */
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted-gray);
+}
+
+/* Elementos de Input, Select e Opções */
+.form-group input,
+.form-group select {
+  width: 100%;
+  background-color: var(--bg-deep-void);
+  border: 1px solid var(--border-grim);
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: var(--text-high-contrast);
+  font-family: inherit;
+  box-sizing: border-box; /* Evita que os inputs estourem a largura */
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Estado de Foco nos Inputs e Selects */
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--border-grim-light);
+  box-shadow: 0 0 0 3px rgba(73, 76, 97, 0.2);
+}
+
+/* Estilização específica do Select */
+.form-group select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238d91a5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+
+/* Opções internas do Select */
+.form-group select option {
+  background-color: var(--bg-abyss-card);
+  color: var(--text-high-contrast);
+}
+
+/* Mensagens de Erro */
+.error-msg {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--hp-red);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Container de Ações (Botões) */
+.modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+  border-top: 1px solid var(--border-grim);
+  padding-top: 20px;
+}
+
+/* Botão Base */
+.modal-actions button {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+/* Botão Cancelar (Secundário) */
+.modal-actions button[type='button'] {
+  background-color: transparent;
+  border: 1px solid var(--border-grim);
+  color: var(--text-muted-gray);
+}
+
+.modal-actions button[type='button']:hover {
+  background-color: var(--bg-abyss-card-hover);
+  color: var(--text-high-contrast);
+}
+
+/* Botão Salvar (Primário / Sucesso) */
+.modal-actions button[type='submit'] {
+  background-color: var(--heal-green);
+  border: 1px solid transparent;
+  color: var(--text-dark-void);
+  box-shadow: 0 4px 12px rgba(0, 179, 126, 0.2);
+}
+
+.modal-actions button[type='submit']:not(:disabled):hover {
+  background-color: #00cc90;
+  transform: translateY(-1px);
+}
+
+.modal-actions button[type='submit']:not(:disabled):active {
+  transform: translateY(0);
+}
+
+/* Botão Desativado (Formulário Inválido) */
+.modal-actions button:disabled {
+  background-color: var(--bg-bar-empty) !important;
+  border-color: transparent !important;
+  color: var(--text-muted-gray) !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Pequena animação para entrada de erros */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

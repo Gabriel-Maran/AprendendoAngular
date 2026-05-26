@@ -1,37 +1,33 @@
-import { Injectable } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
 import { LocalStorage } from '../local-storage/local-storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoinService {
-  coin: number = 0;
-  LOCALNAME = 'COIN-STORAGE';
+  private readonly LOCALNAME = 'COIN-STORAGE';
+  private storage = inject(LocalStorage);
+  coin = signal<number>(this.storage.get(this.LOCALNAME) ?? 0);
 
-  constructor(private storage: LocalStorage) {
-    const storedCoins = this.storage.get(this.LOCALNAME);
-    this.coin = storedCoins ? Number(storedCoins) : 0;
+  constructor() {
+    effect(() => {
+      this.storage.set(this.LOCALNAME, this.coin()); //
+    });
   }
 
   addCoins(amount: number): void {
-    this.coin += amount;
-    this.saveToStorage();
+    this.coin.update((current: number) => Number(current) + Number(amount));
   }
 
   spendCoins(amount: number): boolean {
-    if (this.coin >= amount) {
-      this.coin -= amount;
-      this.saveToStorage();
+    if (this.coin() >= amount) {
+      this.coin.update((current: number) => Number(current) - Number(amount));
       return true;
     }
     return false;
   }
 
   getCoins(): number {
-    return this.coin;
-  }
-
-  private saveToStorage(): void {
-    this.storage.set(this.LOCALNAME, this.coin);
+    return this.coin();
   }
 }

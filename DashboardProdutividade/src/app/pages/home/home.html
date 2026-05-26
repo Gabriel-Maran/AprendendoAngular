@@ -45,6 +45,10 @@
   <section aria-live="polite">
     @if (selectedBar === 'COMPRAS') {
       <app-compras-view />
+    } @else if (selectedBar === 'HABITOS') {
+      <app-habitos-view />
+    } @else if (selectedBar === 'TAREFAS_DIARIAS') {
+      <app-daily-tasks-view />
     }
   </section>
 </main>

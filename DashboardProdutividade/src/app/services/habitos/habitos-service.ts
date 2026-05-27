@@ -30,11 +30,11 @@ export class HabitosService {
   }
 
   getHabitoById(id: number): Habitos | null {
-    return this.habitosSignal().find((item) => item.id === id) || null;
+    return this.habitosSignal().find((item: Habitos) => item.id === id) || null;
   }
 
   addHabito(habito: Habitos): void {
-    this.habitosSignal.update((items) => [...items, habito]);
+    this.habitosSignal.update((items: Habitos[]) => [...items, habito]);
   }
 
   useHabito(id: number): void {
@@ -44,11 +44,11 @@ export class HabitosService {
     const valorXp = habito.xp ?? 0;
 
     if (habito.isGood) {
-      this.coinService.addCoins(valorCoin);
-      this.xpService.adcXP(valorXp);
+      this.coinService.addCoins(Number(valorCoin));
+      this.xpService.adcXP(Number(valorXp));
     } else {
-      this.coinService.spendCoins(valorCoin);
-      this.xpService.subXp(valorXp);
+      this.coinService.spendCoins(Number(valorCoin));
+      this.xpService.subXp(Number(valorXp));
     }
   }
 }

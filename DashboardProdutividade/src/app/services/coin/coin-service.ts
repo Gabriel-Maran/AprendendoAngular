@@ -7,11 +7,11 @@ import { LocalStorage } from '../local-storage/local-storage';
 export class CoinService {
   private readonly LOCALNAME = 'COIN-STORAGE';
   private storage = inject(LocalStorage);
-  coin = signal<number>(this.storage.get(this.LOCALNAME) ?? 0);
+  coin = signal<number>(Number(this.storage.get(this.LOCALNAME) ?? 0));
 
   constructor() {
     effect(() => {
-      this.storage.set(this.LOCALNAME, this.coin()); //
+      this.storage.set(this.LOCALNAME, Number(this.coin()));
     });
   }
 
@@ -28,6 +28,6 @@ export class CoinService {
   }
 
   getCoins(): number {
-    return this.coin();
+    return Number(this.coin());
   }
 }

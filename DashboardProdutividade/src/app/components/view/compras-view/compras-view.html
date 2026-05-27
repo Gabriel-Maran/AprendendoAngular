@@ -8,17 +8,17 @@
 <app-modal-reward (closeModal)="closeModal()" [isOpen]="modalOpen()" />
 
 <main class="inventory-grid">
-  @for (compra of compras(); track $index) {
+  @for (compra of compras(); track compra.id) {
     <div
       class="card-item"
-      [style.--rarity-color]="'var(--rarity-' + compra.rarity.toLowerCase() + ')'"
+      [style.--type-color]="compra.purchased ? 'var(--color-good)' : 'var(--color-bad)'"
     >
-      <!-- Topo do Card: Identificação de Tipo e Data -->
+      <!-- Topo do Card: Status da Recompensa (Adquirido ou Disponível) -->
       <div class="card-meta">
-        <span class="badge-rarity">{{ compra.rarity }}</span>
-        <span class="purchase-date">{{
-          compra.purchased ? 'Já adquirido' : 'Ainda não adquirido'
-        }}</span>
+        <span class="badge-rarity" [class.good]="compra.purchased">
+          {{ compra.purchased ? 'Adquirido' : 'Disponível' }}
+        </span>
+        <span class="purchase-date"> Raridade: {{ traduzirRaridade(compra.rarity) }} </span>
       </div>
 
       <!-- Corpo do Card: Nome e Descrição -->
@@ -27,26 +27,33 @@
         <p class="item-description">{{ compra.description }}</p>
       </div>
 
-      <!-- Linha de Status: Estado de Equipamento e Preço -->
+      <!-- Linha de Status: Estado de Uso e Preço em Moedas -->
       <div class="card-status-line">
-        <span class="status-indicator" [class.used]="compra.is_used">
-          {{ compra.is_used ? 'Utilizado' : 'Disponível' }}
-        </span>
+        <div class="currency-tag">
+          <span class="xp-icon">📦</span>
+          <span class="xp-value">{{ compra.is_used ? 'Utilizado' : 'Não utilizado' }}</span>
+        </div>
 
         <div class="currency-tag">
-          <span class="gold-icon"></span>
+          <span class="gold-icon">🪙</span>
           <span class="gold-value">{{ compra.value }}</span>
         </div>
       </div>
 
-      <!-- Zona de Ações: Botões Alinhados no Fundo -->
+      <!-- Zona de Ações: Comprar ou Utilizar a Recompensa -->
       <div class="card-actions">
         @if (compra.purchased) {
-          <button class="btn-action btn-use" (click)="usar(compra.id)" [disabled]="compra.is_used">
-            {{ compra.is_used ? 'Já usado' : 'Utilizar' }}
+          <button
+            class="btn-action"
+            [class.btn-buy]="compra.is_used"
+            [class.btn-use]="!compra.is_used"
+            (click)="usar(compra.id)"
+            [disabled]="compra.is_used"
+          >
+            {{ compra.is_used ? 'Já Usado' : 'Utilizar Recompensa' }}
           </button>
         } @else {
-          <button class="btn-action btn-buy" (click)="comprar(compra.id)">Comprar Já</button>
+          <button class="btn-action btn-use" (click)="comprar(compra.id)">Comprar Já</button>
         }
       </div>
     </div>

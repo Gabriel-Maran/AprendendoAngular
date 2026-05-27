@@ -36,23 +36,23 @@ export class XpBarService {
   adcXP(qntdd: number): void {
     const current = this.xp();
 
-    let actXp: number = Number(current[0]) + Number(qntdd); // Corrigido para somar (+)
+    let actXp: number = Number(current[0]) + Number(qntdd);
     let gapLevel: number = Number(current[1]);
     let level: number = Number(current[2]);
     let maxLevel: number = Number(current[3]);
 
-    while (actXp >= gapLevel) {
-      actXp -= gapLevel;
+    while (Number(actXp) >= Number(gapLevel)) {
+      actXp -= Number(gapLevel);
       level += 1;
       gapLevel = Number(this.calcNextLevelGap(level));
 
-      if (level > maxLevel) {
-        this.reciveRewardLevel(level);
-        maxLevel = level;
+      if (Number(level) > Number(maxLevel)) {
+        this.reciveRewardLevel(Number(level));
+        maxLevel = Number(level);
       }
     }
 
-    this.xp.set([actXp, gapLevel, level, maxLevel]);
+    this.xp.set([Number(actXp), Number(gapLevel), Number(level), Number(maxLevel)]);
   }
 
   subXp(qntdd: number): void {
@@ -71,9 +71,9 @@ export class XpBarService {
 
       level -= 1;
       gapLevel = Number(this.calcNextLevelGap(level));
-      actXp = gapLevel + actXp;
+      actXp = Number(gapLevel + actXp);
     }
-    this.xp.set([actXp, gapLevel, level, maxLevel]);
+    this.xp.set([Number(actXp), Number(gapLevel), Number(level), Number(maxLevel)]);
   }
 
   private calcNextLevelGap(num: number): number {

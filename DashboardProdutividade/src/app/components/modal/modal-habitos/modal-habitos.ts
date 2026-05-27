@@ -25,12 +25,10 @@ export class ModalHabitos {
     }),
     description: new FormControl('', { nonNullable: true }),
     isGood: new FormControl(false, [Validators.required]),
-    coin: new FormControl(0, {
-      nonNullable: true,
+    coin: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(0)],
     }),
-    xp: new FormControl(0, {
-      nonNullable: true,
+    xp: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(0)],
     }),
   });
@@ -68,8 +66,8 @@ export class ModalHabitos {
         title: formsValues.title,
         description: formsValues.description,
         isGood: formsValues.isGood ?? false,
-        coin: formsValues.coin,
-        xp: formsValues.xp,
+        coin: formsValues.coin!,
+        xp: formsValues.xp!,
       };
 
       this.habitosService.addHabito(newHabito);

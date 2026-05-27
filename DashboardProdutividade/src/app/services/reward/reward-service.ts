@@ -26,26 +26,26 @@ export class RewardService {
   }
 
   getRewardById(id: number): Reward | null {
-    return this.compras().find((item) => item.id === id) || null;
+    return this.compras().find((item: Reward) => item.id === id) || null;
   }
 
   addReward(reward: Reward) {
-    this.compras.update((items) => [...items, reward]);
+    this.compras.update((items: Reward[]) => [...items, reward]);
   }
 
   buyReward(rewardId: number) {
-    const reward = this.getRewardById(rewardId);
+    const reward: Reward | null = this.getRewardById(rewardId);
     if (!reward) {
       throw new Error('Reward not found by id: ' + rewardId);
     }
 
-    const buyed = this.coinService.spendCoins(reward.value);
+    const buyed = this.coinService.spendCoins(Number(reward.value));
     if (!buyed) {
       throw new Error('You cannot buy it, grind more money!');
     }
 
     this.compras.update((items) =>
-      items.map((item) => (item.id === rewardId ? { ...item, purchased: true } : item)),
+      items.map((item: Reward) => (item.id === rewardId ? { ...item, purchased: true } : item)),
     );
   }
 

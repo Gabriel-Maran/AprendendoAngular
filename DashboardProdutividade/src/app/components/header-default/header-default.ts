@@ -13,12 +13,12 @@ export class HeaderDefault {
   protected coins = this.coinService.coin;
 
   addCoins(qntdd: number) {
-    this.coinService.addCoins(qntdd);
-    this.coins.set(this.coins() + qntdd);
+    this.coinService.addCoins(Number(qntdd));
+    this.coins.set(Number(this.coins()) + Number(qntdd));
   }
 
   spendCoins(qntdd: number) {
-    this.coinService.spendCoins(qntdd);
-    this.coins.set(this.coinService.getCoins());
+    this.coinService.spendCoins(Number(qntdd));
+    this.coins.set(Number(this.coinService.getCoins()));
   }
 }

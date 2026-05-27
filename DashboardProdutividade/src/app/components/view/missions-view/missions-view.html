@@ -1,0 +1,42 @@
+<header class="inventory-header">
+  <button class="btn-primary" (click)="openModal()">
+    <img src="/gift.svg" alt="" aria-hidden="true" />
+    Adicionar Missão
+  </button>
+</header>
+
+<app-modal-missions (closeModal)="closeModal()" [isOpen]="modalOpen()" />
+
+<main class="inventory-grid">
+  @for (mission of missionsRaw(); track mission.id) {
+    <div class="card-item">
+      <div class="card-meta">
+        <span class="purchase-date">ID: #{{ mission.id }}</span>
+      </div>
+
+      <div class="card-body">
+        <h2 class="item-name">{{ mission.title }}</h2>
+        <p class="item-description">{{ mission.description }}</p>
+      </div>
+
+      <div class="card-status-line">
+        <div class="currency-tag">
+          <span class="xp-icon">⚡</span>
+          <span class="xp-value">{{ mission.xp }} XP</span>
+        </div>
+
+        <div class="currency-tag">
+          <span class="gold-icon">🪙</span>
+          <span class="gold-value">{{ mission.coin }} Coins</span>
+        </div>
+      </div>
+
+      <!-- Botão de Ação: Finalizar Missão -->
+      <div class="card-actions" style="margin-top: 1rem">
+        <button class="btn-success" (click)="finalizarMission(mission.id)">
+          ✅ Finalizar Missão
+        </button>
+      </div>
+    </div>
+  }
+</main>

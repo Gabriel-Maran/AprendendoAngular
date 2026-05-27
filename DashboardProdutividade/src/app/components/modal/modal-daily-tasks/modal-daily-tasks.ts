@@ -27,12 +27,10 @@ export class ModalDailyTasks {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    coin: new FormControl(0, {
-      nonNullable: true,
+    coin: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(0)],
     }),
-    xp: new FormControl(0, {
-      nonNullable: true,
+    xp: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(0)],
     }),
   });
@@ -69,8 +67,8 @@ export class ModalDailyTasks {
         title: formsValues.title,
         description: formsValues.description,
         isDone: formsValues.isDone,
-        coin: formsValues.coin,
-        xp: formsValues.xp,
+        coin: formsValues.coin!,
+        xp: formsValues.xp!,
       };
 
       this.dailyTasksService.addDailyTasks(newDailyTask);

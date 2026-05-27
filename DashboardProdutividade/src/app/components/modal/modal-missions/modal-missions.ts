@@ -1,43 +1,40 @@
 import { Component, effect, ElementRef, inject, input, output, viewChild } from '@angular/core';
+import { MissionsService } from '../../../services/missions/missions-service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Rarity } from '../../../model/Rarity';
-import { RewardService } from '../../../services/reward/reward-service';
-import { Reward } from '../../../model/Reward';
+import { Mission } from '../../../model/Mission';
 
 @Component({
-  selector: 'app-modal-reward',
+  selector: 'app-modal-missions',
   imports: [ReactiveFormsModule],
-  templateUrl: './modal-reward.html',
-  styleUrl: './modal-reward.css',
+  templateUrl: './modal-missions.html',
+  styleUrl: './modal-missions.css',
 })
-export class ModalReward {
-  rewardService = inject(RewardService);
+export class ModalMission {
+  missionService = inject(MissionsService);
 
   isOpen = input<boolean>(false);
   closeModal = output<void>();
-  dialogElement = viewChild.required<ElementRef<HTMLDialogElement>>('modalReward');
+  dialogElement = viewChild.required<ElementRef<HTMLDialogElement>>('modalDailyTasks');
 
-  // Removido o campo 'id' do formulário já que o gera dinamicamente com Date.now()
   forms = new FormGroup({
-    name: new FormControl('', {
+    title: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(3), Validators.maxLength(25)],
     }),
     description: new FormControl('', { nonNullable: true }),
-    value: new FormControl<number | null>(null, {
-      validators: [Validators.required, Validators.min(1)],
+    coin: new FormControl<number | null>(null, {
+      validators: [Validators.required, Validators.min(0)],
     }),
-
-    rarity: new FormControl<Rarity>('common', {
-      nonNullable: true,
-      validators: [Validators.required],
+    xp: new FormControl<number | null>(null, {
+      validators: [Validators.required, Validators.min(0)],
     }),
   });
 
   campos = [
-    { id: 'name', label: 'Nome', type: 'text' },
+    { id: 'title', label: 'Título', type: 'text' },
     { id: 'description', label: 'Descrição', type: 'text' },
-    { id: 'value', label: 'Custo', type: 'number' },
+    { id: 'coin', label: 'Coins', type: 'number' },
+    { id: 'xp', label: 'XP', type: 'number' },
   ];
 
   constructor() {
@@ -60,17 +57,15 @@ export class ModalReward {
     if (this.forms.valid) {
       const formsValues = this.forms.getRawValue();
 
-      const newReward: Reward = {
+      const newMission: Mission = {
         id: Date.now(),
-        name: formsValues.name,
+        title: formsValues.title,
         description: formsValues.description,
-        is_used: false,
-        purchased: false,
-        rarity: formsValues.rarity,
-        value: formsValues.value!,
+        coin: formsValues.coin!,
+        xp: formsValues.xp!,
       };
 
-      this.rewardService.addReward(newReward);
+      this.missionService.addMission(newMission);
       this.close();
     }
   }

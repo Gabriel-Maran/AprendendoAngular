@@ -5,8 +5,8 @@
   padding: 0;
   background: transparent;
   width: 100%;
-  max-width: 500px; /* CORRIGIDO: Valor corrigido de 00px para 500px */
-  margin: auto; /* ADICIONADO: Centraliza horizontal e verticalmente o <dialog> */
+  max-width: 500px;
+  margin: auto; /* Centraliza horizontal e verticalmente o <dialog> */
 }
 
 /* Pseudo-elemento para escurecer o fundo atrás do modal */
@@ -20,12 +20,12 @@
   background-color: var(--bg-abyss-card);
   border: 1px solid var(--border-grim);
   border-radius: 12px;
-  width: 100%; /* ALTERADO: De 60% para 100% para respeitar o max-width do pai */
+  width: 100%; /* Respeita o max-width do pai */
   padding: 28px;
   box-shadow:
     0 16px 40px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(255, 255, 255, 0.02);
-  box-sizing: border-box; /* ADICIONADO: Garante que o padding não quebre a largura */
+  box-sizing: border-box; /* Garante que o padding não quebre a largura */
 }
 
 /* Título do Modal */
@@ -34,7 +34,7 @@
   font-weight: 700;
   color: var(--text-high-contrast);
   margin-bottom: 24px;
-  margin-top: 0; /* ADICIONADO: Remove margens nativas indesejadas */
+  margin-top: 0; /* Remove margens nativas indesejadas */
   letter-spacing: 0.5px;
   border-bottom: 2px solid var(--border-grim);
   padding-bottom: 12px;
@@ -63,9 +63,8 @@ form {
   color: var(--text-muted-gray);
 }
 
-/* Elementos de Input, Select e Opções */
-.form-group input,
-.form-group select {
+/* Elementos de Input */
+.form-group input {
   width: 100%;
   background-color: var(--bg-deep-void);
   border: 1px solid var(--border-grim);
@@ -74,33 +73,17 @@ form {
   font-size: 0.95rem;
   color: var(--text-high-contrast);
   font-family: inherit;
-  box-sizing: border-box; /* ADICIONADO: Evita que os inputs estourem a largura */
+  box-sizing: border-box; /* Evita que os inputs estourem a largura */
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
 }
 
-/* Estado de Foco nos Inputs e Selects */
-.form-group input:focus,
-.form-group select:focus {
+/* Estado de Foco nos Inputs */
+.form-group input:focus {
   outline: none;
   border-color: var(--border-grim-light);
   box-shadow: 0 0 0 3px rgba(73, 76, 97, 0.2);
-}
-
-/* Estilização específica do Select */
-.form-group select {
-  appearance: none;
-  cursor: pointer;
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 40px;
-}
-
-/* Opções internas do Select */
-.form-group select option {
-  background-color: var(--bg-abyss-card);
-  color: var(--text-high-contrast);
 }
 
 /* Mensagens de Erro */

@@ -28,19 +28,19 @@ export class DailyTasksService {
   }
 
   getHabitoById(id: number): DailyTasks | null {
-    return this.dailyTasks().find((item) => item.id === id) || null;
+    return this.dailyTasks().find((item: DailyTasks) => item.id === id) || null;
   }
 
   addDailyTasks(dailyTask: DailyTasks): void {
-    this.dailyTasks.update((items) => [...items, dailyTask]);
+    this.dailyTasks.update((items: DailyTasks[]) => [...items, dailyTask]);
   }
 
   doneDailyTask(id: number): void {
     const dailyTask = this.getHabitoById(id);
     if (!dailyTask || dailyTask.isDone) return;
 
-    this.coinService.addCoins(dailyTask.coin ?? 0);
-    this.xpService.adcXP(dailyTask.xp ?? 0);
+    this.coinService.addCoins(Number(dailyTask.coin ?? 0));
+    this.xpService.adcXP(Number(dailyTask.xp ?? 0));
 
     this.dailyTasks.update((tasks) =>
       tasks.map((item) => (item.id === id ? { ...item, isDone: true } : item)),
@@ -48,6 +48,6 @@ export class DailyTasksService {
   }
 
   resetAllTasks() {
-    this.dailyTasks.update((tasks) => tasks.map((item) => ({ ...item, isDone: true })));
+    this.dailyTasks.update((tasks) => tasks.map((item) => ({ ...item, isDone: false })));
   }
 }

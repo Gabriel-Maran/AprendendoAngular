@@ -2,6 +2,7 @@ import { Component, computed, effect, inject, signal } from '@angular/core';
 import { ModalReward } from '../../modal/modal-reward/modal-reward';
 import { Reward } from '../../../model/Reward';
 import { RewardService } from '../../../services/reward/reward-service';
+import { Rarity } from '../../../model/Rarity';
 
 @Component({
   selector: 'app-compras-view',
@@ -48,6 +49,19 @@ export class ComprasView {
   usar(rId: number) {
     this.rewardService.useReward(rId);
     this.atualizarLista();
+  }
+
+  traduzirRaridade(rarity: Rarity): string {
+    switch (rarity) {
+      case 'legendary':
+        return 'Lendário';
+      case 'epic':
+        return 'Épico';
+      case 'rare':
+        return 'Raro';
+      default:
+        return 'Comum';
+    }
   }
 
   private atualizarLista() {
